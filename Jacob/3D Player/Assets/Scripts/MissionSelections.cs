@@ -6,27 +6,35 @@ public class MissionSelections : MonoBehaviour {
     public Button[] Missions;
     public Button activeMission;
 
-    //change name of stats
-    //these are passed along to the player's current missions and eventually added to the player's stat when completed.
-    //public float stat1;
-    //public float stat2;
-    //public float stat3;
+    public GameObject PlayerCurrentMission;
+    
 
     public void SwitchMission()
     {
-        Button m = Missions[Random.Range(0, Missions.Length)];
-        while (GameObject.ReferenceEquals(m, activeMission))
+        if (PlayerCurrentMission.GetComponent<CurrentMissionObject>().AddMission(activeMission.GetComponent<MissionObject>()))
         {
-            m = Missions[Random.Range(0, Missions.Length)];
-        }
-        activeMission = m;
-        foreach (Button b in Missions)
-        {
-            b.gameObject.SetActive(false);
-        }
-        m.gameObject.SetActive(true);
+            //display success
 
-        //Debug.Log(m.name);
+            //switch the button to a new one
+            Button m = Missions[Random.Range(0, Missions.Length)];
+            while (GameObject.ReferenceEquals(m, activeMission))
+            {
+                m = Missions[Random.Range(0, Missions.Length)];
+            }
+            activeMission = m;
+            foreach (Button b in Missions)
+            {
+                b.gameObject.SetActive(false);
+            }
+            m.gameObject.SetActive(true);
+            m.Select();
+        } else
+        {
+            //display failure
+            // 'Can't add a new mission unless you finish or cancel your current mission'
+        }
+
+
     }
 
 	// Update is called once per frame
