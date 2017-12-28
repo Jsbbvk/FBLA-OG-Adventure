@@ -5,7 +5,13 @@ using UnityEngine.UI;
 public class MissionSelections : MonoBehaviour {
     public Button[] Missions;
     public Button activeMission;
-		
+
+    //change name of stats
+    //these are passed along to the player's current missions and eventually added to the player's stat when completed.
+    //public float stat1;
+    //public float stat2;
+    //public float stat3;
+
     public void SwitchMission()
     {
         Button m = Missions[Random.Range(0, Missions.Length)];
