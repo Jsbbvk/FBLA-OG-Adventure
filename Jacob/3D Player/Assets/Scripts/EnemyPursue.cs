@@ -56,7 +56,7 @@ public class EnemyPursue : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
         EndGame = true;
-        
+        yield return new WaitForSeconds(0.3f);
         Application.Quit();
         
     }
