@@ -6167,7 +6167,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 418165066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 345, y: 159, z: 0}
+  m_LocalPosition: {x: 188.5, y: 155.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 590697725}
@@ -13108,7 +13108,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 886233533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 280, y: 93, z: 0}
+  m_LocalPosition: {x: 123.5, y: 89.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1206228234}
@@ -16349,7 +16349,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1174526582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -130.51, z: 0}
+  m_LocalPosition: {x: 0, y: -127.009995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 999971503}
@@ -20717,6 +20717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1476364956}
   - component: {fileID: 1476364955}
+  - component: {fileID: 1476364957}
   m_Layer: 0
   m_Name: Text Box Manager
   m_TagString: Untagged
@@ -20754,6 +20755,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476364957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1476364954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260a1afd8be477b4b920fc71dabe7590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 0}
+  theText: {fileID: 0}
+  textFileName: 
+  textLines: []
+  currentLine: 0
+  endAtLine: 0
 --- !u!1001 &1477493674
 Prefab:
   m_ObjectHideFlags: 0

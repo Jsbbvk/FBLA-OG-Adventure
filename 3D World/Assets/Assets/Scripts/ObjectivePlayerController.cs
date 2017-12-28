@@ -15,6 +15,7 @@ public class ObjectivePlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
 		foreach (GameObject g in gameObj)
         {
             Transform target = g.GetComponent<Transform>();

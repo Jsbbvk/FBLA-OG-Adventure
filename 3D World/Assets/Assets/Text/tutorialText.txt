@@ -1,0 +1,6 @@
+Welcome to _title_! Press [Enter] to continue with text dialogs.
+Let's get started! Use [W], [A], [S], [D] to move.
+Use Arrow Keys to turn left, right, up, or down.
+Try moving and turning. Get used to the controls!
+Now try moving to the objective right in front of you!
+Press [E] to interact!
