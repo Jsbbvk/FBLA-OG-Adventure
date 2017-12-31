@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialController : MonoBehaviour {
-    protected TextBoxManager t;
+    public TextBoxManager t;
 
-    protected GameObject tutorialObj;
+    public GameObject tutorialObj;
     protected Introduction intro;
 	// Use this for initialization
 	void Start () {
        // intro = GetComponent<Introduction>();
         //intro.enabled = false;
         t = GameObject.Find("Text Box Manager").GetComponent<TextBoxManager>();
-        ObjectivePlayerController obj = GameObject.Find("Main Player").GetComponent<ObjectivePlayerController>();
-        obj.TogglePointer(false);
+        
         tutorialObj = GameObject.Find("Tutorial OBJ");
         tutorialObj.SetActive(false);
     }
@@ -52,9 +51,9 @@ public class TutorialController : MonoBehaviour {
         Debug.Log(t.finishFile + " " + showStart);
         if (t.finishFile && showIntro)
         {
-            Debug.Log("Aafafd");
+            //Debug.Log("Aafafd");
             t.SetText("Show Intro");
-            Debug.Log("Aasafasf");
+            //Debug.Log("Aasafasf");
             showIntro = false;
         }
         if (t.finishFile && !showIntro)
@@ -94,15 +93,11 @@ public class TutorialController : MonoBehaviour {
             t.SetText("tutorialText");
             showTutorialText = false;
         }
-        //Debug.Log(t.finishFile);
         if (t.finishFile)
         {
-            //   Debug.Log("A");
             tutorialObj.SetActive(true);
             showStart = false;
             doneTutorial = true;
         }
-        //Debug.Log("ASDF");
-
     }
 }

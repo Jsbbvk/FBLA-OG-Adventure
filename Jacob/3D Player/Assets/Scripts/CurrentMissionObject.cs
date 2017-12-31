@@ -19,23 +19,38 @@ public class CurrentMissionObject : MonoBehaviour {
     public GameObject MissionText;
     public GameObject NoMissionText;
 
-    public float currentProgress;
+    public float currentProgress = 0;
     public float totalProgress;
 
     public Button finishButton;
+    public bool finishObjective = false;
 
     public GameObject stat1Value;
     public GameObject stat2Value;
     public GameObject stat3Value;
+
+    public Button MissionButton;
     //TODO 
     /*
      * Make sure to set ALL TEXT to 'Auto Size'!! 
      * 
      */
 
+
+    public void UpdateProgress(float n)
+    {
+        currentProgress += n;
+        MissionProgress.SetText(currentProgress + "/" + totalProgress);
+        if (currentProgress >= totalProgress)
+        {
+            finishObjective = true;
+        }
+    }
+    
     public void CancelMission()
     {
         MissionActive = false;
+        MissionButton.Select();
         //reset mission
     }
 
@@ -46,6 +61,7 @@ public class CurrentMissionObject : MonoBehaviour {
         stat2Value.GetComponent<StatObject>().AddStat(stat2);
         stat3Value.GetComponent<StatObject>().AddStat(stat3);
         MissionActive = false;
+        MissionButton.Select();
     }
 
     //returns false if you can't add a new mission
@@ -66,7 +82,13 @@ public class CurrentMissionObject : MonoBehaviour {
             stat1 = m.stat1;
             stat2 = m.stat2;
             stat3 = m.stat3;
+
+            totalProgress = m.totalProgress;
+            currentProgress = 0;
+            MissionProgress.SetText(currentProgress + "/" + totalProgress);
+
             MissionActive = true;
+            finishObjective = false;
             return true;
         }
     }
@@ -89,7 +111,13 @@ public class CurrentMissionObject : MonoBehaviour {
         }
 
         //check if progress is finished
-        
+        if (finishObjective)
+        {
+            finishButton.gameObject.SetActive(true);
+        } else
+        {
+            finishButton.gameObject.SetActive(false);
+        }
 	}
 
     

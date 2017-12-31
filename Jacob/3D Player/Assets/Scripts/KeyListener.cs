@@ -16,7 +16,7 @@ public class KeyListener : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.E))
+		if (Input.GetKeyDown(KeyCode.T))
         {
             BetaGameOptions.pause = true;
             MissionSelection.SetActive(false);

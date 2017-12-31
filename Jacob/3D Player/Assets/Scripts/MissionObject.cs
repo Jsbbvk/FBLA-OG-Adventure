@@ -7,7 +7,7 @@ public class MissionObject : MonoBehaviour {
     public float stat1;
     public float stat2;
     public float stat3;
-
+    public float totalProgress;
     public TextMeshProUGUI MissionType;
     public TextMeshProUGUI MissionName;
     public TextMeshProUGUI MissionInfo;
