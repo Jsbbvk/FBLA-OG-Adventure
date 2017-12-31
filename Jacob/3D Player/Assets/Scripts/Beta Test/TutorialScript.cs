@@ -8,6 +8,8 @@ public class TutorialScript : MonoBehaviour {
     public GameObject tutorialObj;
     public GameObject tutorialDoor;
     public GameObject tutorialBox;
+    public GameObject Pointer;
+    public GameObject CampusTarget;
 
     public bool showStart = true;
     public bool showTutorialText = true;
@@ -33,6 +35,11 @@ public class TutorialScript : MonoBehaviour {
         }
     }
 
+    private void ActivateObjective()
+    {
+        Pointer.GetComponent<ObjectivePointerController>().SetTarget(CampusTarget);
+    }
+
     private void ShowIntro()
     {
         if (textBoxManagerScript.finishFile && showIntro)
@@ -40,10 +47,10 @@ public class TutorialScript : MonoBehaviour {
             textBoxManagerScript.SetText("Show Intro");
             showIntro = false;
         }
-        if (textBoxManagerScript.finishFile && !showIntro)
+        if (!textBoxManagerScript.finishFile && !showIntro)
         {
             finishTutorial = false;
-            //MAKE the next objective to go to
+            ActivateObjective();
         }
     }
 

@@ -6,16 +6,36 @@ public class ObjectivePointerController : MonoBehaviour {
     public GameObject Target;
     public GameObject Pointer;
     public float rangeOfInBoundsGameObject = 5f;
-    // Update is called once per frame
+    
+    public void SetTarget(GameObject t)
+    {
+        Target = t;
+        gameObject.SetActive(true);
+    }
+
     void Update () {
         if (Target == null)
         {
             gameObject.SetActive(false);
-            return;
+
         }
-        gameObject.SetActive(true);
-        transform.LookAt(Target.transform.position);
-       
+        else
+        {
+            gameObject.SetActive(true);
+            transform.LookAt(Target.transform.position);
+
+            var heading = Target.transform.position - GetComponent<Transform>().position;
+            heading.y = 0;
+
+            if (heading.sqrMagnitude < rangeOfInBoundsGameObject * rangeOfInBoundsGameObject)
+            {
+                Pointer.SetActive(false);
+            }
+            else
+            {
+                Pointer.SetActive(true);
+            }
+        }
         /*
         Transform targetT = Target.GetComponent<Transform>();
 

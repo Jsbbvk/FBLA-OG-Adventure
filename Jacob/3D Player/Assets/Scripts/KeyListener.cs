@@ -25,10 +25,12 @@ public class KeyListener : MonoBehaviour {
         } 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            /*
             BetaGameOptions.pause = true;
             PlayerProfile.SetActive(false);
             MissionSelection.SetActive(true);
             activeMissionButton.GetComponent<MissionSelections>().activeMission.Select();
+            */
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
