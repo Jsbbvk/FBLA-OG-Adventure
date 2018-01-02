@@ -8,6 +8,8 @@ public class BetaGameOptions : MonoBehaviour {
     //add more states here
     public static readonly int gameState = 0;
     public static readonly int menuState = 1;
+
+    public static bool IsFBLAMember = false;
     // Use this for initialization
     void Start()
     {

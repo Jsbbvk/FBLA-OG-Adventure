@@ -17,7 +17,7 @@ public class MissionBoardObject : MonoBehaviour {
     {
         isInteractable = false;
         Player = GameObject.Find("Main Player").GetComponent<Transform>();
-        inBoundOfInteractions = 15f;
+        inBoundOfInteractions = 10f;
     }
 
     void Update()
