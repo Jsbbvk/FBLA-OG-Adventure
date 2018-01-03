@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashHandler : MonoBehaviour {
+    /*
+     * What this script does is to spawn the objects that could be picked up
+     *  - Once an object is picked up, it calls AddPoint() which also calls 
+     *    "Current Mission"'s UpdateProgress()
+     *    
+     * */
     public TrashObject[] trash;
     public float progress;
+
+    //this is the 'Current Mission' so that it can track the completetion
     public GameObject Mission;
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (!Mission.GetComponent<CurrentMissionObject>().MissionActive)
         {
