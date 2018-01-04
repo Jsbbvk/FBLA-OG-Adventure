@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 public class PlayerMotor1 : MonoBehaviour {
-
+    public bool CanPlayerMove = true;
     protected CharacterController controller;
 
    // public Animation run;
@@ -55,7 +55,7 @@ public class PlayerMotor1 : MonoBehaviour {
             Application.Quit();
         }
 
-        if (!BetaGameOptions.pause)
+        if (!BetaGameOptions.pause && CanPlayerMove)
         {
             move = Vector3.zero;
             

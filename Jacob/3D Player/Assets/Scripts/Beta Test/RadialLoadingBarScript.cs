@@ -22,12 +22,14 @@ public class RadialLoadingBarScript : MonoBehaviour {
             heldDown = false;
             timer = 0;
             Center.fillAmount = 0;
+            GameObject.Find("Main Player").GetComponent<PlayerMotor1>().CanPlayerMove = true;
         }
 
         if (heldDown)
         {
             timer++;
             Center.fillAmount = timer*loadSpeed / 100;
+            GameObject.Find("Main Player").GetComponent<PlayerMotor1>().CanPlayerMove = false;
         }
         if (Center.fillAmount == 1)
         {
@@ -41,10 +43,16 @@ public class RadialLoadingBarScript : MonoBehaviour {
         gameObject.SetActive(false);
         timer = 0;
         heldDown = false;
+        Center.fillAmount = 0;
+        GameObject.Find("Main Player").GetComponent<PlayerMotor1>().CanPlayerMove = true;
     }
 
     public void SetGameObjectToCall(GameObject g)
     {
+
         obj = g;
+        gameObject.SetActive(true);
     }
+
+    
 }

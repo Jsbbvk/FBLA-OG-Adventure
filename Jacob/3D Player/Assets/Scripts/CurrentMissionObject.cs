@@ -6,9 +6,9 @@ using TMPro;
 public class CurrentMissionObject : MonoBehaviour {
     public bool MissionActive;
 
-    public float stat1;
-    public float stat2;
-    public float stat3;
+    public float involvement;
+    public float charisma;
+    public float knowledge;
 
     public TextMeshProUGUI MissionType;
     public TextMeshProUGUI MissionName;
@@ -25,17 +25,32 @@ public class CurrentMissionObject : MonoBehaviour {
     public Button finishButton;
     public bool finishObjective = false;
 
-    public GameObject stat1Value;
-    public GameObject stat2Value;
-    public GameObject stat3Value;
+    public GameObject involvementValue;
+    public GameObject charismaValue;
+    public GameObject knowledgeValue;
 
     public Button MissionButton;
+    public Button ProfileButton;
+    public Button CancelMissionButton;
+    public TextMeshProUGUI CancelMissionText;
+
+    Navigation MissionButtonNavNF = new Navigation();
+    Navigation MissionButtonNavIF = new Navigation();
     //TODO 
     /*
      * Make sure to set ALL TEXT to 'Auto Size'!! 
      * 
      */
+    public void Start()
+    {
+        MissionButtonNavNF.mode = Navigation.Mode.Explicit;
+        MissionButtonNavNF.selectOnDown = CancelMissionButton;
+        MissionButtonNavNF.selectOnRight = ProfileButton;
 
+        MissionButtonNavIF.mode = Navigation.Mode.Explicit;
+        MissionButtonNavIF.selectOnDown = finishButton;
+        MissionButtonNavIF.selectOnRight = ProfileButton;
+    }
 
     public void UpdateProgress(float n)
     {
@@ -57,9 +72,9 @@ public class CurrentMissionObject : MonoBehaviour {
     public void CompleteMission()
     {
         //add stats to the player's stats
-        stat1Value.GetComponent<StatObject>().AddStat(stat1);
-        stat2Value.GetComponent<StatObject>().AddStat(stat2);
-        stat3Value.GetComponent<StatObject>().AddStat(stat3);
+        involvementValue.GetComponent<StatObject>().AddStat(involvement);
+        charismaValue.GetComponent<StatObject>().AddStat(charisma);
+        knowledgeValue.GetComponent<StatObject>().AddStat(knowledge);
         MissionActive = false;
         MissionButton.Select();
     }
@@ -79,9 +94,9 @@ public class CurrentMissionObject : MonoBehaviour {
             MissionName.SetText(m.MissionName.text);
             MissionRewards.SetText(m.MissionRewards.text);
             MissionType.SetText(m.MissionType.text);
-            stat1 = m.stat1;
-            stat2 = m.stat2;
-            stat3 = m.stat3;
+            involvement = m.Involvement;
+            charisma = m.Charisma;
+            knowledge = m.Knowledge;
 
             totalProgress = m.totalProgress;
             currentProgress = 0;
@@ -92,12 +107,7 @@ public class CurrentMissionObject : MonoBehaviour {
             return true;
         }
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
+    
 	// Update is called once per frame
 	void Update () {
 		if (MissionActive)
@@ -114,9 +124,16 @@ public class CurrentMissionObject : MonoBehaviour {
         if (finishObjective)
         {
             finishButton.gameObject.SetActive(true);
+            CancelMissionButton.gameObject.SetActive(false);
+            CancelMissionText.gameObject.SetActive(false);
+
+            MissionButton.navigation = MissionButtonNavIF;
         } else
         {
             finishButton.gameObject.SetActive(false);
+            CancelMissionButton.gameObject.SetActive(true);
+            CancelMissionText.gameObject.SetActive(true);
+            MissionButton.navigation = MissionButtonNavNF;
         }
 	}
 

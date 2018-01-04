@@ -9,23 +9,33 @@ public class RepairableObject : MonoBehaviour {
     public bool isRepaired = false;
     public GameObject RadialLoadingBar;
 
+    public static int Contacts = 0;
     public void FinishLoading()
     {
         //sparkle animation
+        GetComponentInParent<RepairObjectsHandler>().AddPoint();
         Debug.Log("YAY!");
         isRepaired = true;
+        if (inContact) Contacts--;
     }
 
     void Start()
     {
         Player = GameObject.Find("Main Player").GetComponent<Transform>();
         inBoundOfInteractions = 10f;
+
     }
 
+    public void Render()
+    {
+        gameObject.SetActive(true);
+        isRepaired = false;
+    }
+    private bool inContact = false;
     void Update()
     {
         
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && !isRepaired)
         {
             var heading = Player.position - GetComponent<Transform>().position;
             heading.y = 0;
@@ -34,14 +44,22 @@ public class RepairableObject : MonoBehaviour {
 
             if (heading.sqrMagnitude <= inBoundOfInteractions + offset * 1.5)
             {
+                if (!inContact) Contacts++;
+                inContact = true;
+                
                 if (!isRepaired)
-                {
-                    RadialLoadingBar.SetActive(true);
+                {                    
                     RadialLoadingBar.GetComponent<RadialLoadingBarScript>().SetGameObjectToCall(gameObject);
+                    
                 }
             } else
             {
-                if (!isRepaired && RadialLoadingBar.activeSelf) RadialLoadingBar.SetActive(false);
+                if (inContact) Contacts--;
+                inContact = false;
+                if (!isRepaired && RadialLoadingBar.activeSelf)
+                {
+                    if (Contacts==0) RadialLoadingBar.SetActive(false);
+                }
             }
         }
 
