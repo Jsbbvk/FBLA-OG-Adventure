@@ -1,19 +1,18 @@
-﻿
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-public class PlayerMotor1 : MonoBehaviour {
-    public bool CanPlayerMove = true;
+
+public class TutorialPlayerMotor : MonoBehaviour {
     protected CharacterController controller;
 
-   // public Animation run;
+    // public Animation run;
 
     protected Vector3 gravity = Vector3.zero;
     protected Vector3 move = Vector3.zero;
-    
-   // private float moveSpeed;
-    private float sprintSpeed;
-    private float walkSpeed;
+
+    // private float moveSpeed;
+    //private float sprintSpeed;
+    //private float walkSpeed;
 
     public float orgMoveSpeed = 10f;
     public float turnSpeed = 300f;
@@ -25,14 +24,11 @@ public class PlayerMotor1 : MonoBehaviour {
 
     private bool sprint = false;
 
-    public Slider walkSlider;
-    public Slider sprintSlider;
-    public Slider hTurnSlider;
-    public Slider vTurnSlider;
-
-
     private Animator animator;
     private float stateValue = 0f;
+
+    public bool Pause = false;
+
     /*
      * 0 - idle
      * 0.1-0.4 walking
@@ -52,13 +48,13 @@ public class PlayerMotor1 : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            Pause = !Pause;
         }
 
-        if (!BetaGameOptions.pause && CanPlayerMove)
+        if (!Pause)
         {
             move = Vector3.zero;
-            
+
             //animation
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -82,37 +78,36 @@ public class PlayerMotor1 : MonoBehaviour {
             animator.SetFloat("MoveSpeed", stateValue);
 
 
-            walkSpeed = walkSlider.value;
-            sprintSpeed = sprintSlider.value;
 
-            float moveSpeed = (sprint) ? sprintSpeed : walkSpeed;
+            float moveSpeed = (sprint) ? orgMoveSpeed : orgMoveSpeed*2;
             //movement
-            
+
             float velX = 0; float velY = 0;
             if (Input.GetKey(KeyCode.W) && velY <= moveSpeed)
             {
                 velY += moveSpeed / 3 * Time.deltaTime;
-            } else if (Input.GetKey(KeyCode.S) && velY >= -moveSpeed)
+            }
+            else if (Input.GetKey(KeyCode.S) && velY >= -moveSpeed)
             {
                 velY -= moveSpeed / 3 * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.D) && velX <= moveSpeed)
             {
-                velX += moveSpeed/ 3 * Time.deltaTime;
-            } else if (Input.GetKey(KeyCode.A) && velX >= -moveSpeed)
+                velX += moveSpeed / 3 * Time.deltaTime;
+            }
+            else if (Input.GetKey(KeyCode.A) && velX >= -moveSpeed)
             {
                 velX -= moveSpeed / 3 * Time.deltaTime;
             }
-            velY *= friction*Time.deltaTime; 
-            velX *= friction*Time.deltaTime;
+            velY *= friction * Time.deltaTime;
+            velX *= friction * Time.deltaTime;
 
             move = new Vector3(velX, 0f, velY);
             move.Normalize();
 
 
 
-            
             if (controller.isGrounded)
             {
                 gravity = Vector3.zero;
@@ -124,30 +119,25 @@ public class PlayerMotor1 : MonoBehaviour {
             move += gravity;
             
             //turning
-            transform.Rotate(0, Input.GetAxis("Horizontal1") * hTurnSlider.value * Time.deltaTime, 0f);
+            transform.Rotate(0, Input.GetAxis("Horizontal1") * 200f * Time.deltaTime, 0f);
 
-            camRotX -= Input.GetAxis("Vertical1") * vTurnSlider.value * Time.deltaTime;
+            camRotX -= Input.GetAxis("Vertical1") * 100 * Time.deltaTime;
             //camRotX = Mathf.Clamp(camRotX, -camPitchMax, camPitchMax);
-
-            //smoother vertical turning
             if (camRotX > camPitchMax)
             {
                 camRotX = camPitchMax;
-            }
-            else if (camRotX < -camPitchMax)
+            } else if (camRotX < -camPitchMax)
             {
                 camRotX = -camPitchMax;
             }
-
             Camera.main.transform.forward = transform.forward;
             Camera.main.transform.Rotate(camRotX, 0f, 0f);
             //end turning
             move = transform.TransformDirection(move);
-            if (sprint == false) controller.Move(move * walkSpeed * Time.deltaTime);
-            else controller.Move(move * sprintSpeed * Time.deltaTime);
+            if (sprint == false) controller.Move(move * orgMoveSpeed * Time.deltaTime);
+            else controller.Move(move * orgMoveSpeed * 2 * Time.deltaTime);
         }
-      
+
     }
 
-    
 }
