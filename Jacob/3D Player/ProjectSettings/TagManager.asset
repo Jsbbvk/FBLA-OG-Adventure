@@ -9,6 +9,7 @@ TagManager:
   - PointerParent
   - Optionbutton
   - Buildings
+  - Keys
   layers:
   - Default
   - TransparentFX

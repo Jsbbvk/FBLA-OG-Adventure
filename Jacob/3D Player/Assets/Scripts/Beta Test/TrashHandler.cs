@@ -9,13 +9,27 @@ public class TrashHandler : MonoBehaviour {
      *    "Current Mission"'s UpdateProgress()
      *    
      * */
-    public TrashObject[] trash;
+    public List<TrashObject> trash = new List<TrashObject>();
     public float progress;
 
     //this is the 'Current Mission' so that it can track the completetion
     public GameObject Mission;
-	
-	void Update () {
+
+    public void Shuffle<TrashObject>(List<TrashObject> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0, n);
+            TrashObject value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
+
+
+    void Update () {
 		if (!Mission.GetComponent<CurrentMissionObject>().MissionActive)
         {
             CancelMission();
@@ -30,10 +44,16 @@ public class TrashHandler : MonoBehaviour {
     public void RenderTrash(float p)
     {
         progress = p;
-        foreach (TrashObject t in trash)
+        Shuffle(trash);
+        for (int i = 0; i < p; i++)
+        {
+            trash[i].gameObject.SetActive(true);
+        }
+
+        /*foreach (TrashObject t in trash)
         {
             t.gameObject.SetActive(true);
-        }
+        }*/
     }
 
     public void AddPoint()

@@ -9,21 +9,32 @@ public class KeyListener : MonoBehaviour {
 
     public GameObject activeMissionButton;
     public Button activeProfileButton;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.T))
+    public bool ProfileActive = false;
+    public GameObject ProfileMissionsPanel;
+    public GameObject ProfilePlayerPanel;
+    // Update is called once per frame
+    void Update () {
+        
+		if (Input.GetKeyDown(KeyCode.Q))
         {
-            //activate profile panel
-            BetaGameOptions.pause = true;
-            MissionSelection.SetActive(false);
-            PlayerProfile.SetActive(true);
-            activeProfileButton.Select();
+            //toggle profile panel
+            
+            if (ProfileActive == false)
+            {
+                BetaGameOptions.pause = true;
+                MissionSelection.SetActive(false);
+                PlayerProfile.SetActive(true);
+                activeProfileButton.Select();
+                ProfileMissionsPanel.SetActive(true);
+                ProfilePlayerPanel.SetActive(false);
+            } else
+            {
+                BetaGameOptions.pause = false;
+                PlayerProfile.SetActive(false);
+            }
+            ProfileActive = !ProfileActive;
         } 
+        /*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //activate mission selection panel
@@ -40,6 +51,6 @@ public class KeyListener : MonoBehaviour {
             PlayerProfile.SetActive(false);
             MissionSelection.SetActive(false);
         }
-
+        */
     }
 }
