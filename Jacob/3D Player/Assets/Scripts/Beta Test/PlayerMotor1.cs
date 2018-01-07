@@ -12,8 +12,8 @@ public class PlayerMotor1 : MonoBehaviour {
     protected Vector3 move = Vector3.zero;
     
    // private float moveSpeed;
-    private float sprintSpeed;
-    private float walkSpeed;
+    private float sprintSpeed = 20;
+    private float walkSpeed = 10;
 
     public float orgMoveSpeed = 10f;
     public float turnSpeed = 300f;
@@ -33,6 +33,11 @@ public class PlayerMotor1 : MonoBehaviour {
 
     private Animator animator;
     private float stateValue = 0f;
+
+    public float HorizontalTurnValue = 100f;
+    public float VerticalTurnValue = 200f;
+    public float WalkSpeedValue = 10f;
+    public float SprintSpeedValue = 20f;
     /*
      * 0 - idle
      * 0.1-0.4 walking
@@ -41,6 +46,16 @@ public class PlayerMotor1 : MonoBehaviour {
      * < -0.5 running(backwards)
      * 
      * */
+
+    private void Awake()
+    {
+        GameObject[] g = GameObject.FindGameObjectsWithTag("Player");
+        if (g.Length > 1) {
+            GameObject.Destroy(g[1]);
+        }
+        
+    }
+
     private void Start()
     {
         animator = this.GetComponent<Animator>();
@@ -82,8 +97,8 @@ public class PlayerMotor1 : MonoBehaviour {
             animator.SetFloat("MoveSpeed", stateValue);
 
 
-            walkSpeed = walkSlider.value;
-            sprintSpeed = sprintSlider.value;
+            walkSpeed = WalkSpeedValue;
+            sprintSpeed = SprintSpeedValue;
 
             float moveSpeed = (sprint) ? sprintSpeed : walkSpeed;
             //movement
@@ -124,9 +139,9 @@ public class PlayerMotor1 : MonoBehaviour {
             move += gravity;
             
             //turning
-            transform.Rotate(0, Input.GetAxis("Horizontal1") * hTurnSlider.value * Time.deltaTime, 0f);
+            transform.Rotate(0, Input.GetAxis("Horizontal1") * HorizontalTurnValue * Time.deltaTime, 0f);
 
-            camRotX -= Input.GetAxis("Vertical1") * vTurnSlider.value * Time.deltaTime;
+            camRotX -= Input.GetAxis("Vertical1") * VerticalTurnValue * Time.deltaTime;
             //camRotX = Mathf.Clamp(camRotX, -camPitchMax, camPitchMax);
 
             //smoother vertical turning

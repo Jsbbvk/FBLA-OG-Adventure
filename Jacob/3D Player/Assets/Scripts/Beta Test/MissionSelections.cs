@@ -8,7 +8,8 @@ public class MissionSelections : MonoBehaviour {
 
     public GameObject PlayerCurrentMission;
     
-
+    //TODO 
+    //Button's onclick still on when there is a mission
     public void SwitchMission()
     {
         if (PlayerCurrentMission.GetComponent<CurrentMissionObject>().AddMission(activeMission.GetComponent<MissionObject>()))
@@ -30,6 +31,7 @@ public class MissionSelections : MonoBehaviour {
             m.Select();
         } else
         {
+
             //display failure
             // 'Can't add a new mission unless you finish or cancel your current mission'
         }
