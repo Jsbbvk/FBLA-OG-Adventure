@@ -89,7 +89,7 @@ public class JoinFBLAOffer : MonoBehaviour {
     private void OnGUI()
     {
 
-        if (isInteractable && BetaGameOptions.pause == false) GUI.Box(new Rect(Screen.width / 2 - 90 / 2, Screen.height - 25, 90, 25), ("V [E]"));
+        if (isInteractable && BetaGameOptions.pause == false) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6 / 2, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), ("View [E]"));
 
     }
 }

@@ -90,11 +90,13 @@ public class GameAndPlayerManager : MonoBehaviour {
     public static void StartStudyingCompetition()
     {
         SavePlayerPosition();
+        SceneManager.LoadScene("Rythm Game");
     }
     
     public static void StartRehearsingSpeech()
     {
         SavePlayerPosition();
+        SceneManager.LoadScene("Rythm Game");
     }
 
     // Update is called once per frame

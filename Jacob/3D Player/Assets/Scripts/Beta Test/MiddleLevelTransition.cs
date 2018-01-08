@@ -18,9 +18,21 @@ public class MiddleLevelTransition : MonoBehaviour
         inBoundOfInteractions = 15f;
     }
 
+    public void Render()
+    {
+        if (!CurrentMission.MissionActive)
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!CurrentMission.MissionActive)
+        {
+            gameObject.SetActive(false);
+        }
         if (gameObject.activeSelf)
         {
             var heading = Player.position - GetComponent<Transform>().position;
@@ -49,7 +61,7 @@ public class MiddleLevelTransition : MonoBehaviour
     private void OnGUI()
     {
 
-        if (isInteractable) GUI.Box(new Rect(Screen.width / 2 - 90 / 2, Screen.height - 25, 90, 25), ("Enter [E]"));
+        if (isInteractable) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6 / 2, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), ("Enter [E]"));
 
     }
 }
