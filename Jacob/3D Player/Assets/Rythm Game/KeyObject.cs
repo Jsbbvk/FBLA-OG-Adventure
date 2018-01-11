@@ -9,6 +9,6 @@ public class KeyObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        transform.position -= transform.forward * Time.deltaTime * BPM;
+        if (!RythmGameController.Pause) transform.position -= transform.forward * Time.deltaTime * BPM;
 	}
 }

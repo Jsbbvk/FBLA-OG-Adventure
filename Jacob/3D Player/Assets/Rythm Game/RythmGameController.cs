@@ -4,13 +4,56 @@ using UnityEngine;
 
 public class RythmGameController : MonoBehaviour {
     public static float Score = 0;
-	// Use this for initialization
-	void Start () {
+    public static bool Pause = true;
+    public static int MissedBeats = 0;
+    public int MaxScore;
+    public int MaxMissedBeats;
+
+    public GameObject WinPanel;
+    public GameObject LosePanel;
+    // Use this for initialization
+    void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    public void QuitMission()
+    {
+        LosePanel.SetActive(false);
+        Reset();
+        GameObject.Find("Manager").GetComponent<GameAndPlayerManager>().CancelMission();
+    }
+
+    public void FinishMission()
+    {
+        WinPanel.SetActive(false);
+        Reset();
+        GameObject.Find("Manager").GetComponent<GameAndPlayerManager>().FinishMission();
+    }
+
+    public static void Reset()
+    {
+        Score = 0;
+        MissedBeats = 0;
+    }
+
+    // Update is called once per frame
+    void Update () {
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //menu 
+            Pause = !Pause;
+        }
+
+        if (Score >= MaxScore)
+        {
+            Pause = true;
+            WinPanel.SetActive(true);
+        }
+        if (MissedBeats >= MaxMissedBeats)
+        {
+            Pause = true;
+            LosePanel.SetActive(true);
+        }
 	}
+    
 }

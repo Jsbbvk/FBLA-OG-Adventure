@@ -42,7 +42,7 @@ public class ButtonPressedScript : MonoBehaviour {
                 //Debug.Log(heading);
                 if (heading.z >= 0.2)
                 {
-                    RythmGameController.Score += 5;
+                    RythmGameController.Score += 1;
                     Debug.Log("A");
                 }
                 else if (heading.z >= 0)

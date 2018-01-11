@@ -45,12 +45,12 @@ public class GameAndPlayerManager : MonoBehaviour {
         AddKnowledge = k;
     }
 
-    public static void FinishMission()
+    public void FinishMission()
     {
         AddRewards();
         SceneManager.LoadScene("v.0.5 BT");
-        Player.transform.position = PlayerPosition + new Vector3(0, 10f);
-        
+        Player.transform.position = PlayerPosition + new Vector3(0, 1000f);
+        Debug.Log(PlayerPosition);
     }
 
     private static void AddRewards()
@@ -60,12 +60,12 @@ public class GameAndPlayerManager : MonoBehaviour {
         Knowledge += AddKnowledge;
     }
 
-    public static void CancelMission()
+    public void CancelMission()
     {
         //ask confirmation
         //'Are you sure you want to leave? Progress will not be saved'
         SceneManager.LoadScene("v.0.5 BT");
-        Player.transform.position = PlayerPosition + new Vector3(0, 10f);
+        Player.transform.position = PlayerPosition + new Vector3(0, 1000f);
     }
 
     private void Start()
@@ -80,9 +80,11 @@ public class GameAndPlayerManager : MonoBehaviour {
         PlayerPosition = Player.transform.position;
     }
 
+
     public static void StartMiddleLevel()
     {
         SavePlayerPosition();
+        Debug.Log(PlayerPosition);
         SceneManager.LoadScene("Rythm Game");
         
     }
