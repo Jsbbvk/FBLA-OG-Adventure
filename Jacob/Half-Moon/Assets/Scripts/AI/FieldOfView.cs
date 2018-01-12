@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour {
     void FindVisibleTargets()
     {
         visibleTargets.Clear();
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
@@ -47,9 +47,13 @@ public class FieldOfView : MonoBehaviour {
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget))
                 {
                     visibleTargets.Add(target);
+                    if (target.gameObject.name == "Main Player")
+                    {
+                        Debug.Log("A");
+                    }
                 }
             }
         }

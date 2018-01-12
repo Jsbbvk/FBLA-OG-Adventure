@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 
     public static bool PlayerHidden = false;
     public static bool Standing = false;
+    public static bool Jumping = false;
 	// Use this for initialization
 	void Start () {
 		
