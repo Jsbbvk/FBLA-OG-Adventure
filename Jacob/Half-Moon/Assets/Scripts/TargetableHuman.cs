@@ -10,8 +10,9 @@ public class TargetableHuman : MonoBehaviour {
     void Start () {
         Player = GameObject.Find("Main Player");
 	}
-
+    
     void Update() {
+
         if (GameController.PlayerHidden)
         {
 

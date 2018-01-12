@@ -15,6 +15,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("P: " + PlayerHidden);
+        //Debug.Log("P: " + PlayerHidden);
 	}
 }
