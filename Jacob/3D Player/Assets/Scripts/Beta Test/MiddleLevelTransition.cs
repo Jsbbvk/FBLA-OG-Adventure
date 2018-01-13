@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MiddleLevelTransition : MonoBehaviour
@@ -60,8 +61,12 @@ public class MiddleLevelTransition : MonoBehaviour
 
     private void OnGUI()
     {
-
-        if (isInteractable) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6 / 2, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), ("Enter [E]"));
+        
+        if (isInteractable) {
+            GUIStyle myStyle = new GUIStyle();
+            myStyle.fontSize = Screen.width / 20;
+            GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6 / 2, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), "Enter [E]", myStyle);
+        }
 
     }
 }

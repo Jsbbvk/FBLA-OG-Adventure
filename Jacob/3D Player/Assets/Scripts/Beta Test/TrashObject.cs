@@ -45,7 +45,11 @@ public class TrashObject : MonoBehaviour {
     private void OnGUI()
     {
 
-        if (isInteractable) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6 / 2, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), ("Pickup [E]"));
-
+        if (isInteractable)
+        {
+            GUIStyle myStyle = new GUIStyle();
+            myStyle.fontSize = Screen.width / 20;
+            GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), "Pickup [E]", myStyle);
+        }
     }
 }
