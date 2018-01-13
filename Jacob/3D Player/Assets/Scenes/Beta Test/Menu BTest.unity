@@ -1415,7 +1415,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "Instructions:\n * Play Missions on Mission Board\n\nControls:\n * WASD
     to move\n * Arrow Keys to turn\n * TAB to pull up Player Tab\n * SHIFT to Toggle
-    Sprinting\n * ESCAPE to quit"
+    Sprinting\n * Backspace to quit Application"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
@@ -1482,10 +1482,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1834554357}
-    characterCount: 172
+    characterCount: 187
     spriteCount: 0
-    spaceCount: 39
-    wordCount: 27
+    spaceCount: 40
+    wordCount: 28
     linkCount: 0
     lineCount: 9
     pageCount: 1
@@ -1528,7 +1528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1884577611
 Transform:
   m_ObjectHideFlags: 0
@@ -1560,7 +1560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1921657306
 Transform:
   m_ObjectHideFlags: 0
