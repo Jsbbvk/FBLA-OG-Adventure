@@ -11,6 +11,7 @@ public class RythmGameController : MonoBehaviour {
 
     public GameObject WinPanel;
     public GameObject LosePanel;
+    public GameObject PauseMenu;
     // Use this for initialization
     void Start () {
 		
@@ -20,14 +21,14 @@ public class RythmGameController : MonoBehaviour {
     {
         LosePanel.SetActive(false);
         Reset();
-        GameObject.Find("Manager").GetComponent<GameAndPlayerManager>().CancelMission();
+        GameObject.Find("Game Controller").GetComponent<GameAndPlayerManager>().CancelMission();
     }
 
     public void FinishMission()
     {
         WinPanel.SetActive(false);
         Reset();
-        GameObject.Find("Manager").GetComponent<GameAndPlayerManager>().FinishMission();
+        GameObject.Find("Game Controller").GetComponent<GameAndPlayerManager>().FinishMission();
     }
 
     public static void Reset()
@@ -36,12 +37,21 @@ public class RythmGameController : MonoBehaviour {
         MissedBeats = 0;
     }
 
+    public void Resume() { Pause = false; }
+
     // Update is called once per frame
     void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape))
         {
             //menu 
             Pause = !Pause;
+            if (Pause)
+            {
+                PauseMenu.SetActive(true);
+            } else
+            {
+                PauseMenu.SetActive(false);
+            }
         }
 
         if (Score >= MaxScore)

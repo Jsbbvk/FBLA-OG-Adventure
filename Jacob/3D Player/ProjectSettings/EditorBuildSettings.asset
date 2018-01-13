@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rythm Game/Rythm Game.unity
     guid: 7390a92352253d142a3fa2510ad59d33
+  - enabled: 1
+    path: Assets/MemoryGame/MemoryGame.unity
+    guid: d58e58066a6141a4c95b5d63056b6820

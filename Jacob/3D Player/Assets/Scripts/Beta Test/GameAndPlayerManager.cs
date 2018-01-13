@@ -92,7 +92,7 @@ public class GameAndPlayerManager : MonoBehaviour {
     public static void StartStudyingCompetition()
     {
         SavePlayerPosition();
-        SceneManager.LoadScene("Rythm Game");
+        SceneManager.LoadScene("MemoryGame");
     }
     
     public static void StartRehearsingSpeech()

@@ -80,7 +80,7 @@ public class MemoryBlockHandler : MonoBehaviour {
             //Debug.Log("Playing");
             MemoryGameController.Pause = true;
             DeselectCurrentBlock();
-            
+            MemoryGameController.PlayingRythm = true;
             StartCoroutine(PlayRythmPattern());
            
         }
@@ -98,6 +98,7 @@ public class MemoryBlockHandler : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.5f);
         MemoryGameController.Pause = false;
+        MemoryGameController.PlayingRythm = false;
         SelectCurrentBlock();
     }
 
