@@ -22,6 +22,13 @@ public class MissionBoardObject : MonoBehaviour {
 
     void Update()
     {
+        if (KeyListener.IsProfileActive)
+        {
+            MissionSelection.SetActive(false);
+            viewingMenu = false;
+            Minimap.SetActive(true);
+            return;
+        }
         if (viewingMenu)
         {
             if (Input.GetKeyDown(KeyCode.E) && BetaGameOptions.pause == true)
@@ -66,8 +73,11 @@ public class MissionBoardObject : MonoBehaviour {
 
     private void OnGUI()
     {
-
-        if (isInteractable && BetaGameOptions.pause == false) GUI.Box(new Rect(Screen.width / 2 - 90 / 2, Screen.height - 25, 90, 25), ("View [E]"));
-
+        if (isInteractable)
+        {
+            GUIStyle myStyle = new GUIStyle();
+            myStyle.fontSize = Screen.width / 20;
+            GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), "View [E]", myStyle);
+        }
     }
 }

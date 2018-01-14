@@ -7,6 +7,8 @@ public class KeyListener : MonoBehaviour {
     public GameObject MissionSelection;
     public GameObject PlayerProfile;
 
+    public static bool IsProfileActive = false;
+
     public GameObject activeMissionButton;
     public Button activeProfileButton;
     public bool ProfileActive = false;
@@ -21,6 +23,7 @@ public class KeyListener : MonoBehaviour {
             
             if (ProfileActive == false)
             {
+                IsProfileActive = true;
                 BetaGameOptions.pause = true;
                 MissionSelection.SetActive(false);
                 PlayerProfile.SetActive(true);
@@ -29,6 +32,7 @@ public class KeyListener : MonoBehaviour {
                 ProfilePlayerPanel.SetActive(false);
             } else
             {
+                IsProfileActive = false;
                 BetaGameOptions.pause = false;
                 PlayerProfile.SetActive(false);
             }

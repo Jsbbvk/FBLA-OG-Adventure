@@ -43,13 +43,15 @@ public class TrashHandler : MonoBehaviour {
 
     public void RenderTrash(float p)
     {
-        progress = p;
-        Shuffle(trash);
-        for (int i = 0; i < p; i++)
+        if (!Mission.GetComponent<CurrentMissionObject>().MissionActive)
         {
-            trash[i].gameObject.SetActive(true);
+            progress = p;
+            Shuffle(trash);
+            for (int i = 0; i < p; i++)
+            {
+                trash[i].gameObject.SetActive(true);
+            }
         }
-
         /*foreach (TrashObject t in trash)
         {
             t.gameObject.SetActive(true);

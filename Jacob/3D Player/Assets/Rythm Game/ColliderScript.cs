@@ -21,6 +21,9 @@ public class ColliderScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Missed");
+        RythmGameController.MissedBeats++;
+
         Destroy(other.gameObject);
     }
 

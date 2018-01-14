@@ -65,7 +65,7 @@ public class PlayerMotor1 : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Application.Quit();
         }

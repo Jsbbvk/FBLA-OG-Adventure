@@ -45,14 +45,16 @@ public class RepairObjectsHandler : MonoBehaviour {
 
     public void Render(int p)
     {
-        progress = p;
-
-        Shuffle(repairableObjects);
-        for (int i = 0; i < p; i++)
+        if (!Mission.GetComponent<CurrentMissionObject>().MissionActive)
         {
-            repairableObjects[i].Render();
-        }
+            progress = p;
 
+            Shuffle(repairableObjects);
+            for (int i = 0; i < p; i++)
+            {
+                repairableObjects[i].Render();
+            }
+        }
 
         /*
         foreach (RepairableObject t in repairableObjects)

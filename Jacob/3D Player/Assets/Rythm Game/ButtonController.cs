@@ -11,17 +11,20 @@ public class ButtonController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (!RythmGameController.Pause)
         {
-            StartCoroutine(Pressed(Button1));
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StartCoroutine(Pressed(Button2));
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            StartCoroutine(Pressed(Button3));
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                StartCoroutine(Pressed(Button1));
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                StartCoroutine(Pressed(Button2));
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                StartCoroutine(Pressed(Button3));
+            }
         }
     }
 
