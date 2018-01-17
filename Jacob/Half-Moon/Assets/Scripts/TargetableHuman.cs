@@ -22,6 +22,9 @@ public class TargetableHuman : MonoBehaviour {
             if (IsLookingAtPlayer())
             {
                 Debug.Log("I SEE YOU");
+            } else
+            {
+                Debug.Log("Hideable");
             }
         }
 	}
@@ -52,7 +55,7 @@ public class TargetableHuman : MonoBehaviour {
                     }
                     if (hit.collider.gameObject.tag == "Hideable Objects")
                     {
-                        Debug.Log("Hideable");
+                        
                         if (GameController.Standing || GameController.Jumping) return true;
                     }
                 }

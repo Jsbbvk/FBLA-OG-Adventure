@@ -23,6 +23,19 @@ public class GameAndPlayerManager : MonoBehaviour {
     public static int AddCharisma = 0;
     public static int AddKnowledge = 0;
 
+
+
+    //save player stats in file
+    public void SaveAndQuit()
+    {
+        Debug.Log("QUITing...");
+        
+    }
+
+
+
+
+
     private void Awake()
     {
         GameObject[] g = GameObject.FindGameObjectsWithTag("GameController");
@@ -36,6 +49,8 @@ public class GameAndPlayerManager : MonoBehaviour {
         }
         DontDestroyOnLoad(this);
     }
+
+
 
     //use to keep track of Mission Rewards once completed
     public static void SetupMissionRewards(int i, int c, int k)

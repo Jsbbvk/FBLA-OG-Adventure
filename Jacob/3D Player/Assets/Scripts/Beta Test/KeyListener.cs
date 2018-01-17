@@ -14,15 +14,52 @@ public class KeyListener : MonoBehaviour {
     public bool ProfileActive = false;
     public GameObject ProfileMissionsPanel;
     public GameObject ProfilePlayerPanel;
-    // Update is called once per frame
+    public GameObject HUD;
+    public GameObject Menu;
+    public bool MenuActive = false;
+    public Button ActiveMenuButton;
+
+    public void TurnOffMenu()
+    {
+        if (MenuActive)
+        {
+            IsProfileActive = false;
+            BetaGameOptions.pause = false;
+            Menu.SetActive(false);
+            HUD.SetActive(true);
+            MenuActive = false;
+        }
+    }
+
     void Update () {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            MenuActive = !MenuActive;
+            if (MenuActive)
+            {
+                HUD.SetActive(false);
+                IsProfileActive = false;
+                BetaGameOptions.pause = true;
+                MissionSelection.SetActive(false);
+                IsProfileActive = true;
+
+                Menu.SetActive(true);
+                ActiveMenuButton.Select();
+            } else
+            {
+                IsProfileActive = false;
+                BetaGameOptions.pause = false;
+                Menu.SetActive(false);
+                HUD.SetActive(true);
+            }
+        }
 		if (Input.GetKeyDown(KeyCode.Tab))
         {
             //toggle profile panel
-            
-            if (ProfileActive == false)
+            ProfileActive = !ProfileActive;
+            if (ProfileActive)
             {
+                HUD.SetActive(false);
                 IsProfileActive = true;
                 BetaGameOptions.pause = true;
                 MissionSelection.SetActive(false);
@@ -32,11 +69,12 @@ public class KeyListener : MonoBehaviour {
                 ProfilePlayerPanel.SetActive(false);
             } else
             {
+                HUD.SetActive(true);
                 IsProfileActive = false;
                 BetaGameOptions.pause = false;
                 PlayerProfile.SetActive(false);
             }
-            ProfileActive = !ProfileActive;
+            
         } 
         /*
         if (Input.GetKeyDown(KeyCode.Q))

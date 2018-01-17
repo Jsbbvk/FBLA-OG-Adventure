@@ -16,8 +16,8 @@ MonoBehaviour:
   - AssetPath: .currentai
     BehaviorTreeName: (No AI Selected)
     BehaviorTreeID: 1
-    LastUpdate: 636512975754026692
-    LastModified: 636512975764069943
+    LastUpdate: 636517001030627422
+    LastModified: 636517000925911614
     Errored: 0
   - AssetPath: .createxml
     BehaviorTreeName: Create New Behavior Tree
@@ -28,8 +28,8 @@ MonoBehaviour:
   - AssetPath: Assets/AI/BehaviorTrees/WaypointPatrol.txt
     BehaviorTreeName: WaypointPatrol
     BehaviorTreeID: 1
-    LastUpdate: 636512975754026692
-    LastModified: 636512975764069943
+    LastUpdate: 636517001030627422
+    LastModified: 636517000925911614
     Errored: 0
   TreeState:
     _branchRepo:
@@ -77,7 +77,7 @@ MonoBehaviour:
       _type: 4
       _stateIndex: 1
       _parent: 0
-      _lastUpdate: 636512975754026692
+      _lastUpdate: 636517001030627422
       _children: 02000000
       _variables: 
       _focused: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
       _type: 20
       _stateIndex: 2
       _parent: 1
-      _lastUpdate: 636512951582774279
+      _lastUpdate: 636517001030627422
       _children: 03000000
       _variables: 
       _focused: 0
@@ -185,10 +185,10 @@ MonoBehaviour:
       _type: 23
       _stateIndex: 3
       _parent: 2
-      _lastUpdate: 636512975754026692
-      _children: 04000000
+      _lastUpdate: 636517001030627422
+      _children: 0400000005000000
       _variables: 
-      _focused: 1
+      _focused: 0
     - _fields:
       - _field: name
         _currentValue: move
@@ -245,13 +245,13 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 4
       _parent: 3
-      _lastUpdate: 636512941171988666
+      _lastUpdate: 0
       _children: 
       _variables: 
       _focused: 0
     - _fields:
       - _field: name
-        _currentValue: lookat
+        _currentValue: mecparam
         _recordChange: 1
         _changed: 0
       - _field: repeatuntil
@@ -278,17 +278,25 @@ MonoBehaviour:
         _currentValue: 
         _recordChange: 1
         _changed: 0
-      - _field: headtarget
-        _currentValue: 
+      - _field: parametername
+        _currentValue: Running
         _recordChange: 1
         _changed: 0
-      - _field: eyetarget
-        _currentValue: 
+      - _field: valueexpression
+        _currentValue: 0.8
         _recordChange: 1
         _changed: 0
-      _type: 11
+      - _field: damptime
+        _currentValue: 1
+        _recordChange: 1
+        _changed: 0
+      - _field: parametertype
+        _currentValue: float
+        _recordChange: 1
+        _changed: 0
+      _type: 14
       _stateIndex: 5
-      _parent: 0
+      _parent: 3
       _lastUpdate: 0
       _children: 
       _variables: 
