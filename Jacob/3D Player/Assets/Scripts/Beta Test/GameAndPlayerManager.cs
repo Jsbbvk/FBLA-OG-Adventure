@@ -46,6 +46,7 @@ public class GameAndPlayerManager : MonoBehaviour {
     bool optionsText = false;
     bool letsStart = false;
     bool ShowMovement = false;
+    int fontText = Screen.width / 10;
     private void OnGUI()
     {
         if (ShowMovement) { 
@@ -59,19 +60,19 @@ public class GameAndPlayerManager : MonoBehaviour {
 
             Color b = new Color(255, 87, 40);
             b.a = guiAlpha;
-            guiAlpha -= Time.deltaTime / 6;
+            guiAlpha -= Time.deltaTime / 9;
 
             GUI.color = b;
             GUIStyle st = new GUIStyle();
-            st.fontSize = Screen.width / 10;
+            st.fontSize = fontText;
 
             if (moveText) GUI.Box(new Rect(Screen.width / 2 - Screen.width/3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), MoveText, st);
-            if (turnText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), TurnText, st);
-            if (sprintText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), SprintText, st);
-            if (interactText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), InteractText, st);
-            if (profileText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), ProfileText, st);
-            if (optionsText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), OptionsText, st);
-            if (letsStart) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), LetsStart, st);
+            if (turnText) GUI.Box(new Rect(Screen.width / 5, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), TurnText, st);
+            if (sprintText) GUI.Box(new Rect(Screen.width / 8, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), SprintText, st);
+            if (interactText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 5, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), InteractText, st);
+            if (profileText) GUI.Box(new Rect(Screen.width / 8, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), ProfileText, st);
+            if (optionsText) GUI.Box(new Rect(Screen.width / 5, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), OptionsText, st);
+            if (letsStart) GUI.Box(new Rect(Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), LetsStart, st);
 
 
             if (guiAlpha <= 0f)
@@ -81,6 +82,7 @@ public class GameAndPlayerManager : MonoBehaviour {
                 {
                     moveText = false;
                     turnText = true;
+                    fontText = Screen.width / 13;
                 }
                 else if (turnText)
                 {
@@ -96,11 +98,13 @@ public class GameAndPlayerManager : MonoBehaviour {
                 {
                     interactText = false;
                     profileText = true;
+                    fontText = Screen.width / 15;
                 }
                 else if (profileText)
                 {
                     profileText = false;
                     optionsText = true;
+                    
                 }
                 else if (optionsText)
                 {
