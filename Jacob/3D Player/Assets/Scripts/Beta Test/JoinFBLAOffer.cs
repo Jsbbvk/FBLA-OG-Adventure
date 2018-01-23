@@ -17,7 +17,7 @@ public class JoinFBLAOffer : MonoBehaviour {
 
     public void AcceptOffer()
     {
-        BetaGameOptions.IsFBLAMember = true;
+        GameAndPlayerManager.IsFBLAMember = true;
         Debug.Log("Congrats!");
         BetaGameOptions.pause = false;
         CanvasPanel.SetActive(false);

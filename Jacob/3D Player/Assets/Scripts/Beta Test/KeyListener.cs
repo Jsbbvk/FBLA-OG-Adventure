@@ -19,6 +19,8 @@ public class KeyListener : MonoBehaviour {
     public bool MenuActive = false;
     public Button ActiveMenuButton;
 
+    public bool KeyActive = true;
+
     public void TurnOffMenu()
     {
         if (MenuActive)
@@ -32,6 +34,7 @@ public class KeyListener : MonoBehaviour {
     }
 
     void Update () {
+        if (!KeyActive) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             MenuActive = !MenuActive;

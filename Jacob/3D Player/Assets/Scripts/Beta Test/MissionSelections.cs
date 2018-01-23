@@ -35,7 +35,6 @@ public class MissionSelections : MonoBehaviour
         else
         {
             Debug.Log("A");
-            //GUIFade(1, 0, 2);
             DisplayFailure = true;
             
             //display failure
@@ -66,16 +65,7 @@ public class MissionSelections : MonoBehaviour
 
     }
 
-
-    private void GUIFade(float start, float end, float length)
-    {
-        for (float i = 0; i <= 1.0; i += Time.deltaTime * (1 / length))
-        {
-            guiAlpha = Mathf.Lerp(start, end, i);
-        }
-        guiAlpha = end; // Accounts for Time.deltaTime variance
-    }
-
+    
     void Update()
     {
 

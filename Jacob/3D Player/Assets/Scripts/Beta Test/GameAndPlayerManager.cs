@@ -23,6 +23,9 @@ public class GameAndPlayerManager : MonoBehaviour {
     public static int AddCharisma = 0;
     public static int AddKnowledge = 0;
 
+    public static bool IsFBLAMember = false;
+    public bool FirstTime = true;
+
 
 
     //save player stats in file
@@ -33,11 +36,99 @@ public class GameAndPlayerManager : MonoBehaviour {
     }
 
 
+    
+    float guiAlpha = 1;
+    bool moveText = false;
+    bool turnText = false;
+    bool sprintText = false;
+    bool interactText = false;
+    bool profileText = false;
+    bool optionsText = false;
+    bool letsStart = false;
+    bool ShowMovement = false;
+    private void OnGUI()
+    {
+        if (ShowMovement) { 
+            string MoveText = "WASD To Move";
+            string TurnText = "Arrow Keys To Turn";
+            string SprintText = "SHIFT To Toggle Sprint";
+            string InteractText = "E To Interact";
+            string ProfileText = "TAB To Open Player Profile";
+            string OptionsText = "ESC To Open Menu";
+            string LetsStart = "Let's START!";
+
+            Color b = new Color(255, 87, 40);
+            b.a = guiAlpha;
+            guiAlpha -= Time.deltaTime / 6;
+
+            GUI.color = b;
+            GUIStyle st = new GUIStyle();
+            st.fontSize = Screen.width / 10;
+
+            if (moveText) GUI.Box(new Rect(Screen.width / 2 - Screen.width/3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), MoveText, st);
+            if (turnText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), TurnText, st);
+            if (sprintText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), SprintText, st);
+            if (interactText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), InteractText, st);
+            if (profileText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), ProfileText, st);
+            if (optionsText) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), OptionsText, st);
+            if (letsStart) GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), LetsStart, st);
 
 
+            if (guiAlpha <= 0f)
+            {
+                guiAlpha = 1f;
+                if (moveText)
+                {
+                    moveText = false;
+                    turnText = true;
+                }
+                else if (turnText)
+                {
+                    turnText = false;
+                    sprintText = true;
+                }
+                else if (sprintText)
+                {
+                    sprintText = false;
+                    interactText = true;
+                }
+                else if (interactText)
+                {
+                    interactText = false;
+                    profileText = true;
+                }
+                else if (profileText)
+                {
+                    profileText = false;
+                    optionsText = true;
+                }
+                else if (optionsText)
+                {
+                    optionsText = false;
+                    letsStart = true;
+                } else if (letsStart)
+                {
+                    letsStart = false;
+                    ShowMovement = false;
+                    BetaGameOptions.pause = false;
+                    GameObject.Find("Key Listener").GetComponent<KeyListener>().KeyActive = true;
+                }
+            }
+        }
+    }
 
     private void Awake()
     {
+
+        if (FirstTime)
+        {
+            Debug.Log(BetaGameOptions.pause);
+            BetaGameOptions.pause = true;
+            GameObject.Find("Key Listener").GetComponent<KeyListener>().KeyActive = false;
+            moveText = true;
+            ShowMovement = true;
+        }
+        FirstTime = false;
         GameObject[] g = GameObject.FindGameObjectsWithTag("GameController");
         if (g.Length > 1)
         {

@@ -12,6 +12,8 @@ public class MissionBoardObject : MonoBehaviour {
     public bool viewingMenu = false;
     public GameObject Minimap;
     public GameObject Board;
+
+    public bool DisplayFailure = false;
     // Use this for initialization
     void Start()
     {
@@ -54,12 +56,17 @@ public class MissionBoardObject : MonoBehaviour {
                     isInteractable = true;
                     if (Input.GetKeyDown(KeyCode.E) && BetaGameOptions.pause == false)
                     {
-                        BetaGameOptions.pause = true;
-                        Minimap.SetActive(false);
-                        MissionSelection.SetActive(true);
-                        activeMissionButton.GetComponent<MissionSelections>().activeMission.Select();
-                        viewingMenu = true;
-
+                        if (GameAndPlayerManager.IsFBLAMember)
+                        {
+                            BetaGameOptions.pause = true;
+                            Minimap.SetActive(false);
+                            MissionSelection.SetActive(true);
+                            activeMissionButton.GetComponent<MissionSelections>().activeMission.Select();
+                            viewingMenu = true;
+                        } else
+                        {
+                            DisplayFailure = true;
+                        }
                     }
                 }
                 else
@@ -70,7 +77,7 @@ public class MissionBoardObject : MonoBehaviour {
 
         }
     }
-
+    float guiAlpha = 1;
     private void OnGUI()
     {
         if (isInteractable)
@@ -78,6 +85,23 @@ public class MissionBoardObject : MonoBehaviour {
             GUIStyle myStyle = new GUIStyle();
             myStyle.fontSize = Screen.width / 20;
             GUI.Box(new Rect(Screen.width / 2 - Screen.width / 6, Screen.height - Screen.height / 8, Screen.width / 6, Screen.height / 8), "View [E]", myStyle);
+        }
+
+        if (DisplayFailure)
+        {
+            Color b = Color.black;
+            b.a = guiAlpha;
+            guiAlpha -= Time.deltaTime / 4;
+
+            GUI.color = b;
+            GUIStyle st = new GUIStyle();
+            st.fontSize = Screen.width / 18;
+            GUI.Box(new Rect(Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 3, Screen.width / 2, Screen.height / 5), "Must Be A FBLA Member!", st);
+            if (guiAlpha <= 0f)
+            {
+                DisplayFailure = false;
+                guiAlpha = 1f;
+            }
         }
     }
 }
